@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class List extends AppCompatActivity {
     ListView listView;
     ArrayList <HashMap<String,String>> arrayList = new ArrayList<>();
     HashMap <String,String> hashMap;
+    Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,7 @@ public class List extends AppCompatActivity {
 
     public class MyAdapter extends BaseAdapter {
         LayoutInflater layoutInflater;
-        ImageView imageView;
+        LinearLayout layItem;
         TextView tvName,tvMobile,tvPosition;
         @Override
         public int getCount() {
@@ -73,7 +75,7 @@ public class List extends AppCompatActivity {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View myView = layoutInflater.inflate(R.layout.item,parent,false);
 
-            imageView = myView.findViewById(R.id.imageView);
+            layItem = myView.findViewById(R.id.layItem);
             tvName = myView.findViewById(R.id.tvName);
             tvMobile = myView.findViewById(R.id.tvMobile);
             tvPosition = myView.findViewById(R.id.tvPosition);
@@ -87,10 +89,10 @@ public class List extends AppCompatActivity {
             tvMobile.setText(sMobile);
             tvPosition.setText(""+x);
 
-            imageView.setOnClickListener(new View.OnClickListener() {
+            layItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(List.this, "Hello "+sName, Toast.LENGTH_SHORT).show();
+                    toastMessage("Hello "+sName);
                 }
             });
 
@@ -145,6 +147,12 @@ public class List extends AppCompatActivity {
         hashMap.put("mobile","01611683142");
         arrayList.add(hashMap);
 
+    }
+
+    public void toastMessage (String message){
+        if (toast!=null) toast.cancel();
+        toast = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override

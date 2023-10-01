@@ -21,6 +21,7 @@ public class LogIn extends AppCompatActivity {
     EditText edEmail,edPassword;
     Button bLongIn;
     SharedPreferences sharedPreferences;
+    Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +55,16 @@ public class LogIn extends AppCompatActivity {
                 if (sEmail.equals(email) && iPassword==password){
                     startActivity(new Intent(LogIn.this,List.class));
                 } else if (!sEmail.equals(email) && iPassword!=password){
-                    Toast.makeText(LogIn.this, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
+                    toastMessage("Incorrect Email or Password");
+                    //Toast.makeText(LogIn.this, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
                     edEmail.requestFocus();
                 } else if (!sEmail.equals(email)) {
-                    Toast.makeText(LogIn.this, "Incorrect Email", Toast.LENGTH_SHORT).show();
+                    toastMessage("Incorrect Email");
+                    //Toast.makeText(LogIn.this, "Incorrect Email", Toast.LENGTH_SHORT).show();
                     edEmail.requestFocus();
                 } else if (iPassword!=password) {
-                    Toast.makeText(LogIn.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                    toastMessage("Incorrect Password");
+                    //Toast.makeText(LogIn.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                     edPassword.requestFocus();
                 }
 
@@ -69,6 +73,12 @@ public class LogIn extends AppCompatActivity {
 
 
     }//onCreate=====================================================================================
+
+    public void toastMessage (String message){
+        if (toast!=null) toast.cancel();
+        toast = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     private TextWatcher watcher = new TextWatcher() {
         @Override
