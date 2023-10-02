@@ -3,14 +3,17 @@ package com.hamidul.personalnumber;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SharedMemory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,7 +25,7 @@ import java.util.HashMap;
 
 public class List extends AppCompatActivity {
     SharedPreferences sharedPreferences;
-    ListView listView;
+    GridView listView;
     ArrayList <HashMap<String,String>> arrayList = new ArrayList<>();
     HashMap <String,String> hashMap;
     Toast toast;
@@ -96,6 +99,14 @@ public class List extends AppCompatActivity {
                 }
             });
 
+            tvMobile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+sMobile)));
+                }
+            });
+
             return myView;
         }
     }
@@ -120,6 +131,11 @@ public class List extends AppCompatActivity {
         hashMap = new HashMap<>();
         hashMap.put("name","Ajad Shikder");
         hashMap.put("mobile","01758586208");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name","S.M.Hamidul");
+        hashMap.put("mobile","01611683142");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();

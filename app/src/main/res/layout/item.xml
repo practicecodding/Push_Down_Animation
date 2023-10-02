@@ -14,7 +14,7 @@
         android:layout_height="100dp"
         android:orientation="horizontal"
         android:background="@drawable/custom_item"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:padding="3dp"
         >
 
@@ -47,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="TextView" />
+                android:text="TextView"
+                />
         </LinearLayout>
 
         <TextView
